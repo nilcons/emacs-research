@@ -65,6 +65,7 @@ Using `insert-file-contents-literally` helps, but [trips up in case of non-ascii
 
 Significant difference with `insert-file-contents-literally`, but the advantage comes only from coding auto detection.
 If `coding: utf-8` is added to top of `hash-table-unindent.el` (with vim, Emacs cannot edit long lines), then we get back the exact same performance of `literally` with the first code snippet, that uses `insert-file-contents`.
+Alternatively `(modify-coding-system-alist 'file "\\.el\\'" 'utf-8)` can be used to default all `.el
 
 So our best result baseline without byte-compilation is 2.1s for 10000 iterations.
 
@@ -153,6 +154,8 @@ Universal transformation format 8 bits; UTF-8
 
 Byte compilation turned the iso-8859-2 encoded text into utf-8 in the output elc file.
 
+This knowledge is stored in the variable called `file-coding-system-alist`, and `.elc` defaults to `utf-8`, while `.el` defaults to autodetection (with `utf-8` preference).
+
 ## Native compilation
 
 `native-compile` has also been tried, but the resulting so file simply contains verbatim the hash table, not some parsed/binary version of it.
@@ -165,6 +168,6 @@ The statement is correct, that "byte-compilation only helps code".
 
 Interestingly, the emacs-db package was also right to byte-compile for paranoia.  That provided them a workaround for the performance loss of coding detection.
 
-Of course, the correct way is to be aware of this and do what `recentf` is doing: do not byte-compile, but specify fixed utf-8 coding at the top of the saved data file.
+Of course, the correct way is to be aware of this and do what `recentf` is doing: do not byte-compile, but specify fixed utf-8 coding at the top of the saved data file (using the `;;; -*- coding: utf-8 -*-` syntax).
 
 Some built-in helpers and documentation would go a long way to make sure that all package authors are aware of this situation.
