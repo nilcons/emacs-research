@@ -38,9 +38,9 @@ This is how e.g. `straight.el` loads its build cache.
        (_gcbefore (garbage-collect))
        (measurement
         (benchmark-run 100
-         (progn
-          (setq myhash (with-temp-buffer (insert-file-contents fname) (read (current-buffer))))
-	  (unless (equal (gethash 'tst-ea0fc06df5e80b263d42 myhash) "36138cf9bef9c837ae99c84564f23b8d91b6c38a0b353932159760bfad29cb4c7c44fde9b2d9392d6db19ce3449744a04d9203e884e8fc7b6633a71fe42e19be27b56ede19ad0e4572c4dfb9a45aa5578cfc5c053b4b4e65d5c40967a4b8bd490099462f") (error "wrong data")))))
+          (progn
+            (setq myhash (with-temp-buffer (insert-file-contents fname) (read (current-buffer))))
+            (unless (equal (gethash 'tst-ea0fc06df5e80b263d42 myhash) "36138cf9bef9c837ae99c84564f23b8d91b6c38a0b353932159760bfad29cb4c7c44fde9b2d9392d6db19ce3449744a04d9203e884e8fc7b6633a71fe42e19be27b56ede19ad0e4572c4dfb9a45aa5578cfc5c053b4b4e65d5c40967a4b8bd490099462f") (error "wrong data")))))
        (_verify (cl-assert (eq 0 (cadr measurement))))
        )
   (car measurement))
@@ -55,9 +55,9 @@ Using `insert-file-contents-literally` helps, but [trips up in case of non-ascii
        (_gcbefore (garbage-collect))
        (measurement
         (benchmark-run 100
-         (progn
-          (setq myhash (with-temp-buffer (insert-file-contents-literally fname) (read (current-buffer))))
-	  (unless (equal (gethash 'tst-ea0fc06df5e80b263d42 myhash) "36138cf9bef9c837ae99c84564f23b8d91b6c38a0b353932159760bfad29cb4c7c44fde9b2d9392d6db19ce3449744a04d9203e884e8fc7b6633a71fe42e19be27b56ede19ad0e4572c4dfb9a45aa5578cfc5c053b4b4e65d5c40967a4b8bd490099462f") (error "wrong data")))))
+          (progn
+            (setq myhash (with-temp-buffer (insert-file-contents-literally fname) (read (current-buffer))))
+            (unless (equal (gethash 'tst-ea0fc06df5e80b263d42 myhash) "36138cf9bef9c837ae99c84564f23b8d91b6c38a0b353932159760bfad29cb4c7c44fde9b2d9392d6db19ce3449744a04d9203e884e8fc7b6633a71fe42e19be27b56ede19ad0e4572c4dfb9a45aa5578cfc5c053b4b4e65d5c40967a4b8bd490099462f") (error "wrong data")))))
        (_verify (cl-assert (eq 0 (cadr measurement))))
        )
   (car measurement))
@@ -88,9 +88,9 @@ First of all, our current data file is not byte-compilable, because it only cont
        (_gcbefore (garbage-collect))
        (measurement
         (benchmark-run 100
-         (progn
-          (setq myhash (catch 'return (load fname nil nil t t)))
-	  (unless (equal (gethash 'tst-ea0fc06df5e80b263d42 myhash) "36138cf9bef9c837ae99c84564f23b8d91b6c38a0b353932159760bfad29cb4c7c44fde9b2d9392d6db19ce3449744a04d9203e884e8fc7b6633a71fe42e19be27b56ede19ad0e4572c4dfb9a45aa5578cfc5c053b4b4e65d5c40967a4b8bd490099462f") (error "wrong data")))))
+          (progn
+            (setq myhash (catch 'return (load fname nil nil t t)))
+            (unless (equal (gethash 'tst-ea0fc06df5e80b263d42 myhash) "36138cf9bef9c837ae99c84564f23b8d91b6c38a0b353932159760bfad29cb4c7c44fde9b2d9392d6db19ce3449744a04d9203e884e8fc7b6633a71fe42e19be27b56ede19ad0e4572c4dfb9a45aa5578cfc5c053b4b4e65d5c40967a4b8bd490099462f") (error "wrong data")))))
        (_verify (cl-assert (eq 0 (cadr measurement))))
        )
   (car measurement))
@@ -123,9 +123,9 @@ But it still loads faster:
        (_gcbefore (garbage-collect))
        (measurement
         (benchmark-run 100
-         (progn
-          (setq myhash (catch 'return (load fname nil nil t t)))
-	  (unless (equal (gethash 'tst-ea0fc06df5e80b263d42 myhash) "36138cf9bef9c837ae99c84564f23b8d91b6c38a0b353932159760bfad29cb4c7c44fde9b2d9392d6db19ce3449744a04d9203e884e8fc7b6633a71fe42e19be27b56ede19ad0e4572c4dfb9a45aa5578cfc5c053b4b4e65d5c40967a4b8bd490099462f") (error "wrong data")))))
+          (progn
+            (setq myhash (catch 'return (load fname nil nil t t)))
+            (unless (equal (gethash 'tst-ea0fc06df5e80b263d42 myhash) "36138cf9bef9c837ae99c84564f23b8d91b6c38a0b353932159760bfad29cb4c7c44fde9b2d9392d6db19ce3449744a04d9203e884e8fc7b6633a71fe42e19be27b56ede19ad0e4572c4dfb9a45aa5578cfc5c053b4b4e65d5c40967a4b8bd490099462f") (error "wrong data")))))
        (_verify (cl-assert (eq 0 (cadr measurement))))
        )
   (car measurement))
