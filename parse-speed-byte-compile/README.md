@@ -101,7 +101,7 @@ Let's prove that byte-compile does nothing to data:
 ```
 $ diff --text hash-table-throw.el hash-table-throw.elc
 1c1,7
-< ;;; -*- lexical-binding: t; -*-
+< ;;; -*- lexical-binding: t -*-
 ---
 > ;ELC
 > ;;; Compiled
